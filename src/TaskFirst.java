@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class TaskFirst {
     public static void main(String[] args) {
 
-        System.out.print("введіть число: ");
+        System.out.print("Введіть число: ");
         Scanner sc = new Scanner(System.in);
         int number = sc.nextInt();
 

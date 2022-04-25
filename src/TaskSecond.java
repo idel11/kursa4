@@ -10,7 +10,7 @@ public class TaskSecond {
         int number = sc.nextInt();
 
         ArrayList<Integer> array = new ArrayList<Integer>();
-        do{
+        do {
             array.add(number % 10);
             number /= 10;
         } while  (number > 0);

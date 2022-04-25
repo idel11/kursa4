@@ -28,5 +28,6 @@ public class TaskThird {
         }
 
         System.out.println(sum);
+
     }
 }

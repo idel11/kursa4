@@ -1,8 +1,9 @@
+package java_starter;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TaskSecond {
-
+public class TaskFirst {
     public static void main(String[] args) {
 
         System.out.print("Введіть число: ");
@@ -15,10 +16,12 @@ public class TaskSecond {
             number /= 10;
         } while  (number > 0);
 
-        if (array.contains(0)) {
-            System.out.println("Ваш масив має нулі");
-        } else System.out.println(array);
+        int sum = 0;
 
+        for(int i=0; i< array.size(); i++) {
+            sum = sum + array.get(i);
+        }
+
+        System.out.println("Сума всіх цифр введеного числа = " + sum);
     }
-
 }

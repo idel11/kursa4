@@ -1,3 +1,5 @@
+package java_starter;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;

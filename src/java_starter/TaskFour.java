@@ -1,3 +1,5 @@
+package java_starter;
+
 import java.util.Scanner;
 
 public class TaskFour {

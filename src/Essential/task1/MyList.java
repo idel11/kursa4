@@ -1,8 +1,6 @@
-package Essential;
+package Essential.task1;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.List;
 
 public class MyList<T> {
 

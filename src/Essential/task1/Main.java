@@ -26,10 +26,10 @@ public class Main {
         System.out.println("============ Перевірка методу size ============");
         System.out.println("Розмір 'ліста': " + list.size());
 
-        System.out.println();
+        /*System.out.println();
         System.out.println("============ Перевірка методу addByIndex ============");
         list.addByIndex("test by index", 2);
-        System.out.println(list);
+        System.out.println(list);*/
 
         System.out.println();
         System.out.println("============ Перевірка методу contains ============");
@@ -54,6 +54,17 @@ public class Main {
         System.out.println("============ Перевірка методу clear ============");
         list.clear();
         System.out.println(list);
+
+        System.out.println();
+        System.out.println("============ Перевірка методу addByIndex ============");
+        for (int i = 0; i < 12; i++) {
+            list.addElement(i);
+        }
+        System.out.println(list);
+        System.out.println("Розмір до додавання: " + list.size());
+        list.addByIndex("test by index", 2);
+        System.out.println(list);
+        System.out.println("Розмір після додавання: " + list.size());
 
     }
 }

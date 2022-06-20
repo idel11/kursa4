@@ -19,7 +19,16 @@ public class MyList<T> {
     }
 
     public void addByIndex(T temp, int index) {
-        array[index] = temp;
+
+        Object[] newArray = new Object[array.length];
+        if (index == array.length - 1) {
+            newArray = new Object[array.length + GROW];
+        }
+        System.arraycopy(array, 0, newArray, 0, index);
+        newArray[index] = temp;
+        System.arraycopy(array, index, newArray, index + 1, array.length - index - 1);
+        array = newArray;
+        this.index++;
     }
 
     public T getByIndex(int index) {

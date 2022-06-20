@@ -26,11 +26,6 @@ public class Main {
         System.out.println("============ Перевірка методу size ============");
         System.out.println("Розмір 'ліста': " + list.size());
 
-        /*System.out.println();
-        System.out.println("============ Перевірка методу addByIndex ============");
-        list.addByIndex("test by index", 2);
-        System.out.println(list);*/
-
         System.out.println();
         System.out.println("============ Перевірка методу contains ============");
         Object foo = "tes3";

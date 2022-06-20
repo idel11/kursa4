@@ -42,8 +42,10 @@ public class MyList<T> {
     }
 
     public void clear() {
-        Object[] newArray = new Object[DEF_SIZE];
-        array = newArray;
+        for (int i = 0; i < array.length; i++) {
+            array[i] = null;
+            this.index = 0;
+        }
     }
 
     public void remove(int index) {

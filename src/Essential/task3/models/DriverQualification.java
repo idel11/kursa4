@@ -11,7 +11,7 @@ public enum DriverQualification {
         this.qualification = qualText;
     }
 
-    public String getQual(){
+    public String getQual() {
         return qualification;
     }
 }

@@ -1,5 +1,6 @@
 package Essential;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class MyList<T> {
         array[index++] = temp;
     }
 
-    public void addByIndex (T temp, int index){
+    public void addByIndex(T temp, int index) {
         array[index] = temp;
     }
 
@@ -31,8 +32,28 @@ public class MyList<T> {
         return index;
     }
 
+    public boolean contains(Object o) {
+        for (int i = 0; i < size(); i++) {
+            if (array[i].equals(o)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void clear() {
+        Object[] newArray = new Object[DEF_SIZE];
+        array = newArray;
+    }
+
+    public void remove(int index) {
+        System.arraycopy(array, index + 1, array, index, array.length - index - 1);
+        this.index--;
+    }
+
     @Override
     public String toString() {
         return "MyList{" + Arrays.toString(array) + "}";
     }
+
 }

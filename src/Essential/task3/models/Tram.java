@@ -13,6 +13,12 @@ public class Tram extends Transport {
     public String toString() {
         return "Tram{" +
                 "numberOfCars=" + numberOfCars +
+                ", id=" + super.getId() +
+                ", model='" + super.getModel() + '\'' +
+                ", numberOfPassengers='" + super.getNumberOfPassengers() + '\'' +
+                ", driver=" + super.getDriver() +
+                ", route=" + super.getRoute() +
+                ", qualification=" + super.getQualification() +
                 '}';
     }
 }

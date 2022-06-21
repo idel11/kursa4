@@ -1,5 +1,7 @@
 package Essential.task3.models;
 
+import java.util.Objects;
+
 public class Transport {
 
     private int id;
@@ -77,5 +79,18 @@ public class Transport {
                 ", route=" + route +
                 ", qualification=" + qualification +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport transport = (Transport) o;
+        return id == transport.id && numberOfPassengers == transport.numberOfPassengers && Objects.equals(model, transport.model) && Objects.equals(driver, transport.driver) && Objects.equals(route, transport.route) && qualification == transport.qualification;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, model, numberOfPassengers, driver, route, qualification);
     }
 }

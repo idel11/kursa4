@@ -5,25 +5,23 @@ import Essential.task3.models.Route;
 import Essential.task3.models.Transport;
 import Essential.task3.repositories.DriverRepoImpl;
 import Essential.task3.repositories.TransportRepoImpl;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DriverServiceImpl implements DriverService {
 
     @Override
-    public void addDriver(Driver driver, @NotNull DriverRepoImpl dr) {
+    public void addDriver(Driver driver, DriverRepoImpl dr) {
         dr.addDriver(driver);
     }
 
     @Override
-    public void removeDriver(Driver driver, @NotNull DriverRepoImpl dr) {
+    public void removeDriver(Driver driver, DriverRepoImpl dr) {
         dr.removeDriver(driver);
     }
 
     @Override
-    public Driver getById(int id, @NotNull DriverRepoImpl dr) {
+    public Driver getById(int id, DriverRepoImpl dr) {
         ArrayList<Driver> array = dr.getAllDrivers();
         for (Driver a : array) {
             if (a.getId() == id) {
@@ -34,7 +32,7 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Driver getBySurname(String surname, @NotNull DriverRepoImpl dr) {
+    public Driver getBySurname(String surname, DriverRepoImpl dr) {
         ArrayList<Driver> array = dr.getAllDrivers();
         for (Driver a : array) {
             if (a.getSurname() == surname) {
@@ -45,12 +43,13 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public void getAll(@NotNull DriverRepoImpl dr) {
-        dr.getAllDrivers();
+    public ArrayList<Driver> getAll(DriverRepoImpl dr) {
+        ArrayList<Driver> result = dr.getAllDrivers();
+        return result;
     }
 
     @Override
-    public ArrayList<Driver> getAllByRoute(Route route, @NotNull TransportRepoImpl tr) {
+    public ArrayList<Driver> getAllByRoute(Route route, TransportRepoImpl tr) {
         ArrayList<Driver> resultArrayDrive = new ArrayList<>();
         for (Transport t : tr.getAllTransports()) {
             if (t.getRoute() == route) {
@@ -61,7 +60,7 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public ArrayList<Transport> getTransportNoDriver(@NotNull TransportRepoImpl tr) {
+    public ArrayList<Transport> getTransportNoDriver(TransportRepoImpl tr) {
         ArrayList<Transport> result = new ArrayList<>();
         for (Transport t : tr.getAllTransports()) {
             if (t.getDriver() == null) {
@@ -72,15 +71,10 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public void assignDriverToTransport(TransportRepoImpl tr, DriverRepoImpl dr) {
-        for (Transport t : getTransportNoDriver(tr)) {
-            for (Driver d : dr.getAllDrivers()) {
-                if (t.getQualification() == d.getQualification()) {
-                    t.setDriver(d);
-                }
-            }
-
-        }
+    public void assignDriverToTransport(Transport transport, Driver driver) {
+        if(transport.getQualification() == driver.getQualification()){
+            transport.setDriver(driver);
+        } else System.out.println("The qualification of driver doesn't correspond to transport");
 
     }
 

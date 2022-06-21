@@ -17,7 +17,7 @@ public class Bus extends Transport {
         return "Bus{" +
                 "type='" + type + '\'' +
                 ", numberOfDoors=" + numberOfDoors +
-                "id=" + super.getId() +
+                ", id=" + super.getId() +
                 ", model='" + super.getModel() + '\'' +
                 ", numberOfPassengers='" + super.getNumberOfPassengers() + '\'' +
                 ", driver=" + super.getDriver() +

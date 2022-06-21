@@ -19,13 +19,13 @@ public interface DriverService {
 
     public Driver getBySurname(String surname, DriverRepoImpl dr);
 
-    public void getAll(DriverRepoImpl dr);
+    public ArrayList<Driver> getAll(DriverRepoImpl dr);
 
     public ArrayList<Driver> getAllByRoute(Route route, TransportRepoImpl tr);
 
     public ArrayList<Transport> getTransportNoDriver(TransportRepoImpl tr);
 
-    public void assignDriverToTransport(TransportRepoImpl tr, DriverRepoImpl dr);
+    public void assignDriverToTransport(Transport transport, Driver driver);
 
 
 }

@@ -1,12 +1,12 @@
 package Essential.task3;
 
 import Essential.task3.models.*;
-import Essential.task3.repositories.DriverRepoImpl;
-import Essential.task3.repositories.RouteRepoImpl;
-import Essential.task3.repositories.TransportRepoImpl;
-import Essential.task3.services.DriverServiceImpl;
-import Essential.task3.services.RouteServiceImpl;
-import Essential.task3.services.TransportServiceImpl;
+import Essential.task3.repositories.impls.DriverRepoImpl;
+import Essential.task3.repositories.impls.RouteRepoImpl;
+import Essential.task3.repositories.impls.TransportRepoImpl;
+import Essential.task3.services.impls.DriverServiceImpl;
+import Essential.task3.services.impls.RouteServiceImpl;
+import Essential.task3.services.impls.TransportServiceImpl;
 
 import java.util.ArrayList;
 

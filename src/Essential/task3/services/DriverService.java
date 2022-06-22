@@ -3,11 +3,10 @@ package Essential.task3.services;
 import Essential.task3.models.Driver;
 import Essential.task3.models.Route;
 import Essential.task3.models.Transport;
-import Essential.task3.repositories.DriverRepoImpl;
-import Essential.task3.repositories.TransportRepoImpl;
+import Essential.task3.repositories.impls.DriverRepoImpl;
+import Essential.task3.repositories.impls.TransportRepoImpl;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface DriverService {
 

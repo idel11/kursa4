@@ -30,7 +30,8 @@ public class TransportServiceImpl implements TransportService {
                     transportRepo.remove(transport);
                 }
             }
-        } return transport;
+        }
+        return transport;
     }
 
     @Override
@@ -73,23 +74,20 @@ public class TransportServiceImpl implements TransportService {
     }
 
     @Override
-    public Transport assignTransportOnRoute(Route route) {
-        for (Transport t : transportRepo.getAll()) {
-            if (t.getDriver() != null) {
-                t.setRoute(route);
-                return t;
-            } else System.out.println("No driver for this transport");
-        } return null;
+    public Transport assignTransportOnRoute(Transport transport, Route route) {
+        if (transport.getDriver() != null) {
+            transport.setRoute(route);
+            return transport;
+        } else System.out.println("No driver for this transport");
+        return null;
     }
 
     @Override
     public Transport removeTransportFromRoute(Transport transport, Route route) {
-        if (transport.getDriver() == null) {
-            if (transport.getRoute() == route) {
-                transport.setRoute(null);
-                return transport;
-            } else System.out.printf("This route is not assigned to this transport");
-        } else System.out.println("This route has assigned driver");
+        if (transport.getRoute() == route) {
+            transport.setRoute(null);
+            return transport;
+        } else System.out.printf("This route is not assigned to this transport");
         return null;
     }
 }

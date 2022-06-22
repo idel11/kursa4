@@ -28,8 +28,19 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public Driver removeDriver(Driver driver) {
-        driverRepo.remove(driver);
-        return driver;
+        int k = 0;
+        for (Transport t : transportRepo.getAll()) {
+            if (t.getDriver() == driver) {
+                k++;
+            }
+        }
+        if (k == 0) {
+            driverRepo.remove(driver);
+            return driver;
+        } else {
+            System.out.println("Driver is assigned on transport");
+        }
+        return null;
     }
 
     @Override
@@ -84,10 +95,13 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public Driver assignDriverToTransport(Transport transport, Driver driver) {
-        if(transport.getQualification() == driver.getQualification()){
+        if (transport.getQualification() == driver.getQualification()) {
             transport.setDriver(driver);
-        } else System.out.println("The qualification of driver doesn't correspond to transport");
-        return driver;
+            return driver;
+        } else {
+            System.out.println("The qualification of driver doesn't correspond to transport");
+            return null;
+        }
     }
 
 }

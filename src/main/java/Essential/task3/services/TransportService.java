@@ -19,7 +19,7 @@ public interface TransportService {
 
     public List<Transport> findAllTransportsNoDriver();
 
-    public Transport assignTransportOnRoute(Route route);
+    public Transport assignTransportOnRoute(Transport transport, Route route);
 
     public Transport removeTransportFromRoute(Transport transport, Route route);
 

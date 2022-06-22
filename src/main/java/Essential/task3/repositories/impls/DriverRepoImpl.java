@@ -3,37 +3,40 @@ package Essential.task3.repositories.impls;
 import Essential.task3.models.Driver;
 import Essential.task3.repositories.DriverRepo;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 public class DriverRepoImpl implements DriverRepo {
 
-    ArrayList<Driver> array = new ArrayList<>();
+    private final List<Driver> array;
 
-    public DriverRepoImpl(ArrayList<Driver> array) {
+    public DriverRepoImpl(List<Driver> array) {
         this.array = array;
     }
 
     @Override
-    public void addDriver(Driver driver) {
+    public Driver add(Driver driver) {
         array.add(driver);
+        return driver;
     }
 
     @Override
-    public ArrayList<Driver> getAllDrivers() {
+    public List<Driver> getAll() {
         return array;
     }
 
     @Override
-    public void updateDriver(Driver driver) {
+    public Driver update(Driver driver) {
         for (Driver d : array) {
             if (d.getId() == driver.getId()) {
                 d = driver;
             }
-        }
+        } return driver;
     }
 
     @Override
-    public void removeDriver(Driver driver) {
+    public Driver remove(Driver driver) {
         array.remove(driver);
+        return driver;
     }
 }

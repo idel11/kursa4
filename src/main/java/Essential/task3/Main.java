@@ -9,22 +9,25 @@ import Essential.task3.services.impls.RouteServiceImpl;
 import Essential.task3.services.impls.TransportServiceImpl;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static Essential.task3.models.DriverQualification.*;
+import static Essential.task3.models.DriverQualification.BUS_DRIVER;
+import static Essential.task3.models.DriverQualification.TRAM_DRIVER;
+
 
 public class Main {
     public static void main(String[] args) {
 
         Driver driver1 = new Driver(1, "Kolya", "Ly", "777 77 77", BUS_DRIVER);
         Driver driver2 = new Driver(2, "Tolya", "My", "555 55 55", TRAM_DRIVER);
-        ArrayList<Driver> driversArray = new ArrayList<>();
+        List<Driver> driversArray = new ArrayList<>();
         driversArray.add(driver1);
         driversArray.add(driver2);
 
         Route firstRoute = new Route(1, "Kyiv", "Poltava");
         Route secondRoute = new Route(2, "Odesa", "Lviv");
         Route thirdRoute = new Route(3, "Lviv", "Kyiv");
-        ArrayList<Route> routesArray = new ArrayList<>();
+        List<Route> routesArray = new ArrayList<>();
         routesArray.add(firstRoute);
         routesArray.add(secondRoute);
         routesArray.add(thirdRoute);
@@ -36,7 +39,7 @@ public class Main {
         Transport tram1 = new Tram(3, "euro", 60, driver2,
                 secondRoute, TRAM_DRIVER, 4);
 
-        ArrayList<Transport> transArray = new ArrayList<>();
+        List<Transport> transArray = new ArrayList<>();
         transArray.add(bus1);
         transArray.add(bus2);
         transArray.add(tram1);
@@ -45,28 +48,28 @@ public class Main {
         DriverRepoImpl ddrr = new DriverRepoImpl(driversArray);
         RouteRepoImpl rroo = new RouteRepoImpl(routesArray);
 
-        DriverServiceImpl drsrv = new DriverServiceImpl();
-        RouteServiceImpl rsv = new RouteServiceImpl();
-        TransportServiceImpl trsrv = new TransportServiceImpl();
+        DriverServiceImpl drsrv = new DriverServiceImpl(ddrr, ttrr);
+        RouteServiceImpl rsv = new RouteServiceImpl(rroo,ttrr);
+        TransportServiceImpl trsrv = new TransportServiceImpl(ttrr);
 
         System.out.println("===================== test driver service ====================");
-        System.out.println(drsrv.getTransportNoDriver(ttrr));
+        System.out.println(drsrv.findTransportNoDriver());
         drsrv.assignDriverToTransport(bus2, driver1);
-        System.out.println(drsrv.getTransportNoDriver(ttrr));
-        System.out.println(drsrv.getAllByRoute(secondRoute, ttrr));
-        System.out.println(drsrv.getBySurname("My", ddrr));
-        System.out.println(drsrv.getById(1, ddrr));
+        System.out.println(drsrv.findTransportNoDriver());
+        System.out.println(drsrv.findAllDriversByRoute(secondRoute));
+        System.out.println(drsrv.findDriverBySurname("My"));
+        System.out.println(drsrv.findDriverById(1));
         System.out.println();
 
 
         System.out.println("==================== test route service =====================");
-        System.out.println(rsv.getRouteById(rroo, 2));
-        System.out.println(rsv.getAllRoutes(rroo));
-        rsv.removeRoute(rroo, secondRoute);
-        System.out.println(rsv.getAllRoutes(rroo));
-        rsv.addRoute(rroo, secondRoute);
-        System.out.println(rsv.getAllRoutes(rroo));
-        System.out.println(rsv.getRoutesNoTransport(rroo, ttrr));
+        System.out.println(rsv.findRouteById(2));
+        System.out.println(rsv.findAllRoutes());
+        rsv.removeRoute(secondRoute);
+        System.out.println(rsv.findAllRoutes());
+        rsv.addRoute(secondRoute);
+        System.out.println(rsv.findAllRoutes());
+        System.out.println(rsv.findRoutesNoTransport());
         System.out.println();
 
 
@@ -75,31 +78,31 @@ public class Main {
         routesArray.add(firstRoute);
         routesArray.add(secondRoute);
         transArray.add(tram1);
-        System.out.println(rsv.getAllRoutes(rroo));
-        System.out.println(trsrv.getAllTrans(ttrr));
-        System.out.println(drsrv.getAll(ddrr));
+        System.out.println(rsv.findAllRoutes());
+        System.out.println(trsrv.findAllTransports());
+        System.out.println(drsrv.findAllDrivers());
 
-        System.out.println(trsrv.getAllTransByModel(ttrr,"ikarus"));
-        System.out.println(trsrv.getTransById(ttrr,2));
+        System.out.println(trsrv.findAllTransportsByModel("ikarus"));
+        System.out.println(trsrv.findTransportById(2));
 
         Transport tram4 = new Tram(4, "ukr", 50, null,
                 null, TRAM_DRIVER, 6);
 
-        trsrv.addTrans(ttrr,tram4);
-        System.out.println(trsrv.getTransById(ttrr,4));
+        trsrv.addTransport(tram4);
+        System.out.println(trsrv.findTransportById(4));
 
-        trsrv.assignTransOnRoute(ttrr, firstRoute);
-        System.out.println(trsrv.getAllTransByModel(ttrr,"ukr"));
+        trsrv.assignTransportOnRoute(firstRoute);
+        System.out.println(trsrv.findAllTransportsByModel("ukr"));
 
         drsrv.assignDriverToTransport(tram4, driver2);
-        trsrv.assignTransOnRoute(ttrr, firstRoute);
-        System.out.println(trsrv.getAllTransByModel(ttrr,"ukr"));
+        trsrv.assignTransportOnRoute(firstRoute);
+        System.out.println(trsrv.findAllTransportsByModel("ukr"));
 
-        trsrv.removeTransFromRoute(tram4,firstRoute);
-        System.out.println(trsrv.getTransById(ttrr,4));
+        trsrv.removeTransportFromRoute(tram4,firstRoute);
+        System.out.println(trsrv.findTransportById(4));
 
-        trsrv.removeTransFromRoute(bus2,firstRoute);
-        System.out.println(trsrv.getTransById(ttrr,2));
+        trsrv.removeTransportFromRoute(bus2,firstRoute);
+        System.out.println(trsrv.findTransportById(2));
 
 
     }

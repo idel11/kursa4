@@ -1,41 +1,42 @@
 package Essential.task3.repositories.impls;
 
-import Essential.task3.models.Transport;
 import Essential.task3.repositories.TransportRepo;
-
-import java.util.ArrayList;
+import Essential.task3.models.Transport;
+import java.util.List;
 
 public class TransportRepoImpl implements TransportRepo {
 
 
-    ArrayList<Transport> array = new ArrayList<>();
+    private final List<Transport> array;
 
-    public TransportRepoImpl(ArrayList<Transport> array) {
+    public TransportRepoImpl(List<Transport> array) {
         this.array = array;
     }
 
     @Override
-    public void addTransport(Transport transport) {
+    public Transport add(Transport transport) {
         array.add(transport);
+        return transport;
     }
 
     @Override
-    public ArrayList<Transport> getAllTransports() {
+    public List<Transport> getAll() {
         return array;
     }
 
     @Override
-    public void updateTransport(Transport transport) {
+    public Transport update(Transport transport) {
         for (Transport t : array) {
             if (t.getId() == transport.getId()) {
                 t = transport;
             }
-        }
+        } return transport;
     }
 
     @Override
-    public void removeTransport(Transport transport) {
+    public Transport remove(Transport transport) {
         array.remove(transport);
+        return transport;
     }
 
 }

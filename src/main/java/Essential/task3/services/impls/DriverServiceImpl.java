@@ -72,8 +72,8 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public ArrayList<Driver> findAllDriversByRoute(Route route) {
-        ArrayList<Driver> resultArrayDrive = new ArrayList<>();
+    public List<Driver> findAllDriversByRoute(Route route) {
+        List<Driver> resultArrayDrive = new ArrayList<>();
         for (Transport t : transportRepo.getAll()) {
             if (t.getRoute() == route) {
                 resultArrayDrive.add(t.getDriver());
@@ -83,8 +83,8 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public ArrayList<Transport> findTransportNoDriver() {
-        ArrayList<Transport> result = new ArrayList<>();
+    public List<Transport> findTransportNoDriver() {
+        List<Transport> result = new ArrayList<>();
         for (Transport t : transportRepo.getAll()) {
             if (t.getDriver() == null) {
                 result.add(t);
